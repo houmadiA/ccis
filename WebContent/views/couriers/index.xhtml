@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<ui:include src="../layout.xhtml"></ui:include>
+	<br />
+	<br />
+	<br />
+	<br />
+	<p:confirmDialog global="true">
+		<p:commandButton value="Non" type="button"
+			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		<p:commandButton value="Oui" type="button" style="float:right"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	</p:confirmDialog>
+	<h:form>
+
+		<p:dataTable value="#{courierBean.couriers}" var="cou"
+			paginator="true" rows="5">
+
+			<f:facet name="header">Liste des Couriers</f:facet>
+			<p:column headerText="ID">
+				<h:outputText value="#{cou.idCourier}" />
+			</p:column>
+			<p:column headerText="DISTINATAIRE"
+				filterBy="#{cou.distinataire.idDistinataire}"
+				filterMatchMode="contains">
+				<h:outputText value="#{cou.distinataire.idDistinataire}" />
+			</p:column>
+			<p:column headerText="RECEPTEUR"
+				filterBy="#{cou.recepteur.idRecepteur}" filterMatchMode="contains">
+				<h:outputText value="#{cou.recepteur.idRecepteur}" />
+			</p:column>
+			<p:column headerText="OBJET" filterBy="#{cou.objet}"
+				filterMatchMode="contains">
+				<h:outputText value="#{cou.objet}" />
+			</p:column>
+			<p:column headerText="DATE" filterBy="#{cou.date}"
+				filterMatchMode="contains">
+				<h:outputText value="#{cou.date}" />
+			</p:column>
+			<p:column headerText="TYPE" filterBy="#{cou.type}"
+				filterMatchMode="contains">
+				<h:outputText value="#{cou.type}" />
+			</p:column>
+			<p:column headerText="OPTIONS">
+				<p:commandButton icon="ui-icon-trash" title="Supprimer"
+					action="#{courierBean.delete(cou.idCourier)}"
+					update="@(.ui-datatable)">
+					<p:confirm header="Confirmation"
+						message="vous-voulez supprimer ce courier ?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:commandButton icon="ui-icon-pencil" title="Modifier" />
+				<p:commandButton icon="ui-icon-extlink" title="Télécharger"
+					ajax="false">
+					<p:fileDownload value="#{courierBean.file}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+	<p:button icon="ui-icon-disk" style="margin-left:0%"
+		value="Ajouter courier" outcome="new.xhtml" />
+</h:body>
+</html>

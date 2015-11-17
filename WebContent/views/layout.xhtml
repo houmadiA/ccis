@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="resources" name="css/style.css" />
+	<h:outputStylesheet library="resources" name="css/bootstrap.min.css" />
+</h:head>
+<h:body styleClass="body">
+
+	<!-- 	<p:dock maxWidth="50" position="top"> -->
+	<!-- 		<p:menuitem value="Accueil" icon="/resources/img/home2.png" url="#" /> -->
+	<!-- 		<p:menuitem value="Missions" icon="/resources/img/mission2.png" -->
+	<!-- 			url="#" /> -->
+	<!-- 		<p:menuitem value="Agents" icon="/resources/img/agents.png" url="#" /> -->
+	<!-- 		<p:menuitem value="Départements" -->
+	<!-- 			icon="/resources/img/departements.png" url="#" /> -->
+	<!-- 		<p:menuitem value="Emetteurs" icon="/resources/img/emetteur.png" -->
+	<!-- 			url="#" /> -->
+	<!-- 		<p:menuitem value="Lieux" icon="/resources/img/lieux.png" url="#" /> -->
+	<!-- 		<p:menuitem value="Moyens de transport" icon="/resources/img/mt.png" -->
+	<!-- 			url="#" /> -->
+	<!-- 		<p:menuitem value="Statistique" icon="/resources/img/statistique.png" -->
+	<!-- 			url="#" /> -->
+	<!-- 		<p:menuitem value="Se connecter" icon="/resources/img/sign-in.png" -->
+	<!-- 			url="#" /> -->
+	<!-- 		<p:menuitem value="S'inscrire" icon="/resources/img/add3.png" url="#" /> -->
+	<!-- 	</p:dock> -->
+	<br />
+	<p:graphicImage value="/resources/img/header4.png" width="100%"
+		height="80px" />
+	<br />
+	<br />
+	<h:form>
+		<p:menubar autoDisplay="true">
+		<p:menuitem value="Accueil" url="/views/index.xhtml"/>
+			<p:menuitem value="Couriers" url="/views/couriers/index.xhtml"/>
+			<p:menuitem value="Destinataires" url="/views/distinataires/index.xhtml"/>
+			<p:menuitem value="Recepteurs" url="/views/recepteurs/index.xhtml"/>
+			<p:menuitem value="Services" url="/views/services/index.xhtml"/>
+			<p:menuitem value="Départements" url="/views/departements/index.xhtml"/>
+		</p:menubar>
+	</h:form>
+
+</h:body>
+</html>

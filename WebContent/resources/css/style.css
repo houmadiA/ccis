@@ -1,0 +1,47 @@
+.body {
+	margin: 0px;
+	background-color: #dae1e1;
+}
+
+
+.login {
+	background-color: #c6c6c6;
+	border-radius: 5%;
+	width: 30%;
+	height: 30%;
+	margin-left: 35%;
+	margin-top: 10%;
+	padding: 2%;
+	box-shadow: 0px 0px 50px 0px black;
+}
+
+.ui-growl {
+	left: 40%;
+	top: 50%;
+}
+
+.ui-datatable-data {
+	text-align: center;
+}
+
+.ui-menu-list {
+	float: right;
+}
+
+.boxShadow{
+	background-color: #c6c6c6;
+	border-radius: 0px;
+	margin: 30px;
+	padding:15px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	
+	box-shadow: 0px 0px 50px 0px black;
+}
+
+.boxBorder{
+	border: solid red;
+	padding: 30px;
+	border-style: dotted;
+	
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0">
+ 
+	<application>
+    	<el-resolver>
+    		org.springframework.web.jsf.el.SpringBeanFacesELResolver
+    	</el-resolver>
+  	</application>
+ 	
+	<managed-bean>
+		<managed-bean-name>departementBean</managed-bean-name>
+		<managed-bean-class>controller.DepartementBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>departementService</property-name>
+			<value>#{departementService}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>distinataireBean</managed-bean-name>
+		<managed-bean-class>controller.DistinataireBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>distinataireService</property-name>
+			<value>#{distinataireService}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>recepteurBean</managed-bean-name>
+		<managed-bean-class>controller.RecepteurBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>recepteurService</property-name>
+			<value>#{recepteurService}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>serviceBean</managed-bean-name>
+		<managed-bean-class>controller.ServiceBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>serviceService</property-name>
+			<value>#{serviceService}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>courierBean</managed-bean-name>
+		<managed-bean-class>controller.CourierBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>courierService</property-name>
+			<value>#{courierService}</value>
+		</managed-property>
+	</managed-bean>
+ 
+</faces-config>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<ui:include src="../layout.xhtml"></ui:include>
+	<br />
+	<br />
+	<br />
+	<br />
+	<p:confirmDialog global="true">
+		<p:commandButton value="Non" type="button"
+			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		<p:commandButton value="Oui" type="button" style="float:right"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	</p:confirmDialog>
+	<h:form style="width : 80%;margin-left:10%;">
+
+		<p:dataTable value="#{distinataireBean.distinataires}" var="dis"
+			paginator="true" rows="5">
+
+			<f:facet name="header">Liste des Destinataires</f:facet>
+			<p:column headerText="ID">
+				<h:outputText value="#{dis.idDistinataire}" />
+			</p:column>
+			<p:column headerText="RAISON SOCIAL" filterBy="#{dis.raisonSocial}"
+				filterMatchMode="contains">
+				<h:outputText value="#{dis.raisonSocial}" />
+			</p:column>
+			<p:column headerText="GRADE DE RESPONSABLE"
+				filterBy="#{dis.gradeDeResponsable}" filterMatchMode="contains">
+				<h:outputText value="#{dis.gradeDeResponsable}" />
+			</p:column>
+			<p:column headerText="TELEPHONE" filterBy="#{dis.telephone}"
+				filterMatchMode="contains">
+				<h:outputText value="#{dis.telephone}" />
+			</p:column>
+			<p:column headerText="FAXE" filterBy="#{dis.faxe}"
+				filterMatchMode="contains">
+				<h:outputText value="#{dis.faxe}" />
+			</p:column>
+			<p:column headerText="ADRESSE" filterBy="#{dis.adresse}"
+				filterMatchMode="contains">
+				<h:outputText value="#{dis.adresse}" />
+			</p:column>
+			<p:column headerText="OPTIONS">
+				<p:commandButton icon="ui-icon-trash" title="Supprimer"
+					action="#{distinataireBean.delete(dis.idDistinataire)}"
+					update="@(.ui-datatable)">
+					<p:confirm header="Confirmation" message="vous-voulez supprimer ce distinataire ?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:commandButton icon="ui-icon-pencil" title="Modifier" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	
+	<p:commandButton icon="ui-icon-disk" style="margin-left:10%"
+		value="Ajouter Destinataire" onclick="PF('ajoutDis').show()" />
+	<h:form>
+		<p:dialog position="center,center" showEffect="scale"
+			hideEffect="scale" header="Ajout d'un destinataire"
+			widgetVar="ajoutDis">
+		<p:inputText required="true" placeholder="Raison social"
+				value="#{distinataireBean.distinataire.raisonSocial}" />
+		<p:inputText required="true" placeholder="Grade de responsable"
+				value="#{distinataireBean.distinataire.gradeDeResponsable}" />
+		<p:inputText required="true" placeholder="Téléphone"
+				value="#{distinataireBean.distinataire.telephone}" />
+		<p:inputText required="true" placeholder="Faxe"
+				value="#{distinataireBean.distinataire.faxe}" />
+		<p:inputText required="true" placeholder="Adresse"
+				value="#{distinataireBean.distinataire.adresse}" />
+
+			<br />
+			<br />
+			<br />
+			<p:button style="float: left" value="Annuler" icon="ui-icon-close"
+				onclick="PF('ajoutDis').hide()" />
+			<p:commandButton value="Enregister"
+				action="#{distinataireBean.add(distinataireBean.distinataire)}"
+				icon="ui-icon-check" style="float: right"
+				onclick="PF('ajoutDis').hide()" update="@(.ui-datatable)" />
+
+		</p:dialog>
+	</h:form>
+
+</h:body>
+</html>

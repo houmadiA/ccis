@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<ui:include src="../layout.xhtml"></ui:include>
+	<br />
+	<br />
+	<br />
+	<br />
+	<p:confirmDialog global="true">
+		<p:commandButton value="Non" type="button"
+			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		<p:commandButton value="Oui" type="button" style="float:right"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	</p:confirmDialog>
+	<h:form style="width : 60%;margin-left:20%;">
+
+		<p:dataTable value="#{recepteurBean.recepteurs}" var="rec"
+			paginator="true" rows="5">
+
+			<f:facet name="header">Liste des Récepteurs</f:facet>
+			<p:column headerText="ID">
+				<h:outputText value="#{rec.idRecepteur}" />
+			</p:column>
+			<p:column headerText="NOM" filterBy="#{rec.nom}"
+				filterMatchMode="contains">
+				<h:outputText value="#{rec.nom}" />
+			</p:column>
+			<p:column headerText="PRENOM" filterBy="#{rec.prenom}"
+				filterMatchMode="contains">
+				<h:outputText value="#{rec.prenom}" />
+			</p:column>
+			<p:column headerText="SERVICE" filterBy="#{rec.service.idService}"
+				filterMatchMode="contains">
+				<h:outputText value="#{rec.service.idService}" />
+			</p:column>
+			<p:column headerText="OPTIONS">
+				<p:commandButton icon="ui-icon-trash" title="Supprimer"
+					action="#{recepteurBean.delete(rec.idRecepteur)}"
+					update="@(.ui-datatable)">
+					<p:confirm header="Confirmation" message="vous-voulez supprimer ce récepteur ?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:commandButton icon="ui-icon-pencil" title="Modifier" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<p:button icon="ui-icon-disk" style="margin-left:20%"
+		value="Ajouter récepteur" outcome="new.xhtml" />
+
+</h:body>
+</html>

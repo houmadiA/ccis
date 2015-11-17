@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	
+</h:head>
+<h:body>
+	<ui:include src="/views/layout.xhtml"></ui:include>
+	<br />
+	<center>
+		<h1>Ajout d'un courier :</h1>
+		<div class="boxBorder" style="width: 50%">
+			<h:form enctype="multipart/form-data">
+				<table>
+					
+					<tr>
+						<td>Date</td>
+						<td><p:calendar
+								value="#{courierBean.courier.date}" /></td>
+					</tr>
+					<tr>
+						<td>Type</td>
+						<td><p:inputText style="width:220px"
+								value="#{courierBean.courier.type}" /></td>
+					</tr>
+					<tr>
+						<td>Distinataire</td>
+						<td><p:selectOneMenu style="width:220px"
+								value="#{courierBean.distinataire}">
+								<f:selectItems value="#{distinataireBean.distinataires}" var="dis"
+									itemLabel="#{dis.raisonSocial}" itemValue="#{dis.idDistinataire}" />
+							</p:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td>Récepteur</td>
+						<td><p:selectOneMenu style="width:220px"
+								value="#{courierBean.recepteur}">
+								<f:selectItems value="#{recepteurBean.recepteurs}" var="rec"
+									itemLabel="#{rec}" itemValue="#{rec.idRecepteur}" />
+							</p:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td>Fichier joint</td>
+						<td><p:fileUpload value="#{courierBean.courier.fichierJoint}" mode="simple"/></td>
+					</tr>
+					<tr>
+						<td>Objet</td>
+						<td><p:editor
+								value="#{courierBean.courier.objet}" /></td>
+					</tr>
+					<tr>
+						<td><br></br> <p:commandButton value="Initialiser"
+								type="reset" icon="ui-icon-close" style="float:left" /></td>
+						<td><br></br> <p:commandButton value="Enregistrer"
+								style="float:right" icon="ui-icon-check" ajax="false"
+								action="#{courierBean.add(courierBean.courier)}" /></td>
+					</tr>
+				</table>
+
+			</h:form>
+		</div>
+	</center>
+
+</h:body>
+</html>

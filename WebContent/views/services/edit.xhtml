@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<style>
+.menu7 {
+	background-color: #11aaee;
+	font-weight: bolder !important;
+	color: #fff !important;
+}
+</style>
+</h:head>
+<h:body>
+	<ui:include src="/views/layout.xhtml"></ui:include>
+	<br />
+	<p:growl for="msg" autoUpdate="true" severity="info,warn" life="2000"
+		closable="true" />
+
+	<center>
+		<h1>Modification d'un lieu :</h1>
+		<div class="boxBorder" style="width: 50%">
+			<h:form>
+				<table>
+					<tr>
+						<td></td>
+						<td><h:inputHidden value="#{lieuBean.lieu.idLieu}" /></td>
+					</tr>
+					<tr>
+						<td>Libelle</td>
+						<td><p:inputText style="width:185px"
+								value="#{lieuBean.lieu.libelle}" /></td>
+					</tr>
+					<tr>
+						<td>Commune</td>
+						<td><p:inputText style="width:185px"
+								value="#{lieuBean.lieu.commune}" /></td>
+					</tr>
+					<tr>
+						<td>Province :</td>
+						<td><p:selectOneMenu style="width:185px"
+								value="#{lieuBean.province}">
+								<f:selectItem itemLabel="" itemValue="" />
+								<f:selectItems value="#{provinceBean.provinces}" var="pr"
+									itemLabel="#{pr.libelle}" itemValue="#{pr.libelle}" />
+							</p:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><br /> <p:button value="Annuler" icon="ui-icon-close"
+								outcome="index.xhtml" style="float:left" /></td>
+						<td><br /> <p:commandButton value="Enregistrer"
+								style="float:right" icon="ui-icon-check"
+								action="#{lieuBean.updateLieu(lieuBean.lieu)}" /></td>
+					</tr>
+				</table>
+
+			</h:form>
+		</div>
+	</center>
+
+</h:body>
+</html>

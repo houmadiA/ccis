@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	
+</h:head>
+<h:body>
+	<ui:include src="/views/layout.xhtml"></ui:include>
+	<br />
+	<center>
+		<h1>Ajout d'un récepteur :</h1>
+		<div class="boxBorder" style="width: 50%">
+			<h:form>
+				<table>
+					<tr>
+						<td>Nom</td>
+						<td><p:inputText style="width:185px"
+								value="#{recepteurBean.recepteur.nom}" /></td>
+					</tr>
+					<tr>
+						<td>Prénom</td>
+						<td><p:inputText style="width:185px"
+								value="#{recepteurBean.recepteur.prenom}" /></td>
+					</tr>
+					<tr>
+						<td>Service</td>
+						<td><p:selectOneMenu style="width:185px"
+								value="#{recepteurBean.service}">
+								<f:selectItems value="#{serviceBean.services}" var="ser"
+									itemLabel="#{ser.libelle}" itemValue="#{ser.idService}" />
+							</p:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><br></br> <p:commandButton value="Initialiser"
+								type="reset" icon="ui-icon-close" style="float:left" /></td>
+						<td><br></br> <p:commandButton value="Enregistrer"
+								style="float:right" icon="ui-icon-check"
+								action="#{recepteurBean.add(recepteurBean.recepteur)}" /></td>
+					</tr>
+				</table>
+
+			</h:form>
+		</div>
+	</center>
+
+</h:body>
+</html>

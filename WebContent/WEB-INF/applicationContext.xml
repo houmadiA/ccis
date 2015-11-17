@@ -1,0 +1,88 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- Database Configuration -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>WEB-INF/resources/config/database/db.properties</value>
+		</property>
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<!-- Hibernate session factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>model.Courier</value>
+				<value>model.Departement</value>
+				<value>model.Distinataire</value>
+				<value>model.Recepteur</value>
+				<value>model.Service</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+
+	</bean>
+
+	<!-- Beans Declaration -->
+	<bean id="courierService" class="service.CourierServiceImpl">
+		<property name="courierDao" ref="courierDao" />
+	</bean>
+
+	<bean id="courierDao" class="dao.CourierImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="departementService" class="service.DepartementServiceImpl">
+		<property name="departementDao" ref="departementDao" />
+	</bean>
+
+	<bean id="departementDao" class="dao.DepartementImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="distinataireService" class="service.DistinataireServiceImpl">
+		<property name="distinataireDao" ref="distinataireDao" />
+	</bean>
+
+	<bean id="distinataireDao" class="dao.DistinataireImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="recepteurService" class="service.RecepteurServiceImpl">
+		<property name="recepteurDao" ref="recepteurDao" />
+	</bean>
+
+	<bean id="recepteurDao" class="dao.RecepteurImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="serviceService" class="service.ServiceServiceImpl">
+		<property name="serviceDao" ref="serviceDao" />
+	</bean>
+
+	<bean id="serviceDao" class="dao.ServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+</beans>
